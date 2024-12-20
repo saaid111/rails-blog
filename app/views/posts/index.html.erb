@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-12 mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1>Blog Posts</h1>
+      <% if Current.user %>
+        <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <% if @posts.any? %>
+      <% @posts.each do |post| %>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h2 class="card-title">
+              <%= link_to post.title, post_path(post), class: "text-decoration-none" %>
+            </h2>
+            <p class="card-subtitle mb-2 text-muted">
+              Posted by <%= post.user.username %> <%= time_ago_in_words(post.created_at) %> ago
+            </p>
+            <div class="card-text">
+              <%= truncate(post.content, length: 200) %>
+            </div>
+            <%= link_to "Read more", post_path(post), class: "btn btn-link" %>
+          </div>
+        </div>
+      <% end %>
+
+      <%== pagy_bootstrap_nav(@pagy) %>
+    <% else %>
+      <div class="alert alert-info">
+        No posts yet. 
+        <% if Current.user %>
+          <%= link_to "Create your first post!", new_post_path %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

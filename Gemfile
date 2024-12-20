@@ -18,7 +18,7 @@ gem "solid_cable"
 gem "bootsnap", require: false
 gem "kamal", require: false
 gem "thruster", require: false
-gem "pagy", "~> 6.2"  # Add version constraint
+gem "pagy", "~> 9.3"  # Add version constraint
 gem 'sprockets-rails'
 
 group :development, :test do
